@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!-- 事件的简化写法 @事件名  两者作用完全一致   -->
+<div id="app">
+    <h3>年龄：{{age}}</h3>
+    <input type="button" value="标准写法" v-on:click="add_age">
+    <input type="button" value="简化写法" @click="add_age">
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            age:20,
+        },
+        methods:{
+            add_age:function (){
+                this.age++;
+            },
+        }
+    })
+</script>
+</body>
+</html>

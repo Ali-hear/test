@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--用来获取data数据中的html标签,并且将a标签作为链接显示-->
+<div id="app">
+    <span v-html="message"></span>
+    <span>{{message}}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'<a href=\"\">啾咪</a>'
+        }
+    })
+</script>
+</body>
+</html>

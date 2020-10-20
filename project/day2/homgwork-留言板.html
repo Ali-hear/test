@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id='app'>
+    <input type="text" v-model="msg">
+    <input type="button" value="发表留言" @click="add_note">
+    <ul>
+        <li v-for="(note,index) in notebook" :key="index">
+            <span>{{note}}</span>
+            <a href="javascript:void(0)" @click="delNote(index)">删除</a>
+        </li>
+    </ul>
+    <span>留言总数量：{{notebook.length}}条</span><br>
+    <input type="button" value="删除所有留言" v-show="isShow" @click="del_all">
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            notebook:['el:用来定义vue的作用范围','v-text:用来获取data中定义的数据并且将数据以文本的形式渲染到指定标签内部'],
+            msg:"",
+            isShow:'true',
+        },
+        methods:{
+            add_note(){
+                let msg = this.msg;
+                if(msg){
+                    // 添加到末尾:push,添加到行首:unshift
+                    this.notebook.unshift(this.msg);
+                    this.msg='';
+                    this.isShow=true;
+                }
+                else{
+                    alert('留言不能为空！')
+                }
+            },
+            delNote(index){
+                // 根据下标删除某个元素
+                this.notebook.splice(index,1);    //index:从哪个下标开始删除
+            },
+            del_all(){
+                this.notebook.splice(0,this.notebook.length);
+                this.isShow = false;
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>数字：{{number}}</h3>
+    <input type="button" value="点我" @click="change_number(78,'小黑')">
+    <input type="button" value="点我2" @click="change_number2">
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            number:34,
+        },
+        methods: {
+            change_number(num,name) {
+                console.log(num);
+                this.number=num;
+                console.log(name);
+            },
+            change_number2() {
+                console.log(event)
+            },
+        },
+    })
+</script>
+</body>
+</html>

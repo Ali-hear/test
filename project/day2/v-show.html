@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--用来控制页面中的某个标签是否展示-->
+<div id='app'>
+    <h3 v-show="false">{{message}}</h3>
+    <hr>
+    <h3 v-show="isShow">{{message}}</h3>
+    <hr>
+    <input v-show="isShow" type="text" value="点击控制是否展示" @click="showMsg">
+    <hr>
+    <span v-show="count>=30">啊啊啊</span>
+    <hr>
+    <input type="button" value="加" @click="add">
+    <input type="button" value="减" @click="del">
+    {{ }}
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message: '是阿黎吧！',
+            count:30,
+            isShow:true,
+        },
+        methods:{
+            showMsg(){
+                this.isShow = !this.isShow;
+            },
+            add(){
+                this.count++;
+            },
+            del(){
+                this.count--;
+            },
+        }
+    })
+</script>
+</body>
+</html>

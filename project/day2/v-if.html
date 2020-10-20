@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--用来控制页面元素的条件 v-else必须跟在v-if元素的后面,否则无法识别-->
+<div id='app'>
+    <!--    if条件满足时展示if,不满足时展示else-->
+    <h3 v-if="true" id="a1">是阿黎</h3>
+    <h3 v-else id="a2">啊</h3>
+    <h3 v-else-if="false">吧</h3>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            message: '',
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id = 'app'>
+<!--可以进行简单的运算,调用相关方法-->
+    {{message.toUpperCase()}}
+
+</div>
+<!--  vue js的引入  -->
+<script src="js/vue.min.js"></script>
+<!--方式二：-->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+
+<script>
+    // 创建第一个vue实例
+    new Vue({
+        el: "#app",        //用来定义vue的作用范围，element对象
+        // 用来给vue实例定义一些相关的数据  vue默认属性
+        data: {
+            // data中变量的名字可以随便定义
+            message: 'hello world!',
+            username: '是阿黎吧！'
+        }
+    })
+</script>
+
+</body>
+</html>

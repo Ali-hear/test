@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+<!--    <style>-->
+<!--        .aa{-->
+<!--            border: 5px aqua solid;-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<body>
+<!--用来绑定标签的属性从而可以通过vue的实例来动态的修改标签的属性v-bind:xxx-->
+<!--v-bind绑定的属性的值一定要在data提前定义好-->
+<div id='app'>
+<!--    <img src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3469716026,2816395410&fm=26&gp=0.jpg"-->
+<!--         class='aa' title="图片">-->
+<!--    v-bing标准写法：-->
+<!--    <img v-bind:src="src" v-bind:title="title" v-bind:class="{aa:showCss}">-->
+<!--    v-bind的简化写法：-->
+    <img alt="" :src="src" :title="title" :class="{aa:showCss}">
+    <input type="button" value="改变图片的样式" @click="addCss">
+    <input type="button" value="切换图片" @click="changeImg">
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            title:'帅气的二哈',
+            showCss:true,
+            src:"https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3469716026,2816395410&fm=26&gp=0.jpg",
+        },
+        methods:{
+            addCss(){
+                this.showCss=!this.showCss;
+            },
+            changeImg(){
+                this.src='https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2481540226,557581684&fm=115&gp=0.jpg';
+            },
+        },
+    })
+</script>
+</body>
+</html>

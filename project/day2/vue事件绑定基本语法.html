@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--在vue中事件的绑定是通过v-on指令来完成的  v-on:事件名="定义好的方法"-->
+<div id="app">
+    <h3>年龄：{{age}}</h3>
+    <!-- v-on:事件名="在methods中定义好的方法的名称"   -->
+    <input type="button" value="点我" v-on:click="add_age">
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            age:20,
+        },
+        //注意是methods!!!  s!!!
+        methods:{
+            add_age: function (){
+                console.log(this.age)
+                // 获取data中定义的age并增长,在事件方法中可以通过 this 来获取当前vue实例所包含的属性
+                this.age++;
+                console.log(this.age)
+            },
+        },
+    })
+</script>
+</body>
+</html>

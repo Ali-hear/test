@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id='app'>
+    {{ message }}<br>
+    {{ number + 6 }}<br>
+    {{ user.username }}<br>
+    {{ arr[0] }}<br>
+    {{users[0].password}}
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            //字符串
+            message: '是阿黎啊',
+            //数字
+            number:20,
+            //对象
+            user:{"username":"阿黎",password:123456},
+            //数组
+            arr:["001","002","003"],
+            //数组中包含对象
+            users:[{"username":"阿黎",password:123456},{"username":"阿黎a",password:123456}],
+        },
+    })
+</script>
+</body>
+</html>

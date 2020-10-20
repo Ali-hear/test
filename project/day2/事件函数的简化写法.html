@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h3>数字：{{num}}</h3>
+    <input type="button" value="点我增加" @click="add_fuc">
+    <input type="button" value="点我减少" @click="del_fuc">
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            num:20,
+        },
+        methods:{
+            //标准写法
+            add_fuc:function (){
+                this.num++;
+            },
+            //简化写法
+            del_fuc(){
+                this.num--;
+            },
+        },
+    })
+</script>
+</body>
+</html>

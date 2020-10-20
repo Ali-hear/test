@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--用来进行循环遍历-->
+<!--在使用v-for的时候一定注意加上 :key 用来给vue内部提供重用和排序的唯一key-->
+<div id='app'>
+    <h3>{{ user.name }}<br>{{ user.age }}<br>{{ user.pwd }}</h3>
+<!--    遍历对象-->
+    <span v-for="(key,value,index) in user">
+        {{ key }}:{{ value }}====={{ index }}
+    </span>
+<!--遍历书序-->
+    <ul v-for="(city,index) in arr">
+        <li>{{index+1}}:{{city}}</li>
+    </ul>
+    <hr>
+    <ul v-for="(value,index) in users" :key="index">
+        <li>{{index+1}}:{{value.name}}=={{value.age}}</li>
+    </ul>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            user:{name:'是阿黎吧',age:18,pwd:123456},
+            arr:["四川", "北京", "山西"],
+            users:[{name:'是阿黎吧',age:18,pwd:123456},
+                {name:'是阿黎吧',age:19,pwd:123456},
+                {name:'是阿黎吧',age:20,pwd:123456},
+            ]
+        },
+    })
+</script>
+</body>
+</html>

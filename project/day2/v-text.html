@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--用来获取data中定义的数据并且将数据以文本的形式渲染到指定标签内部-->
+
+<div id="app">
+<!--    存在插值闪烁问题：显示为{{message}},并且将数据以文本的形式渲染到指定标签内部-->
+    <span>{{message}},并且将数据以文本的形式渲染到指定标签内部</span>
+    <hr>
+    <!--使用v-text会覆盖标签内部原有的值,插值表达式不会覆盖,会与原有的值进行拼接-->
+    <span v-text="message">并且将数据以文本的形式渲染到指定标签内部</span>
+</div>
+<script src="js/vue.min.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'用来获取data中定义的数据',
+        }
+    })
+</script>
+
+</body>
+</html>
