@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id='app'>
+    这是父组件中的username: {{username}}
+    <com @btn="clickme"></com>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    let com = {
+        template: `
+          <div>
+          这是子组件:
+          <button @click="clickBtn">按钮</button>
+          </div>
+        `,
+        methods:{
+            clickBtn(){
+                this.$emit('btn','aliiiiiiiaaaa')
+            }
+        }
+    }
+
+    new Vue({
+        el: "#app",
+        data: {
+            username:'ali',
+        },
+        methods: {
+            clickme(username){
+                console.log(username)
+                this.username=username;
+            }
+        },
+        components:{
+            com:com
+        }
+    })
+</script>
+</body>
+</html>

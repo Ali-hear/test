@@ -17,7 +17,7 @@
         </li>
     </ul>
     <span>留言总数量：{{notebook.length}}条</span><br>
-    <input type="button" value="删除所有留言" v-show="isShow" @click="del_all">
+    <input type="button" value="删除所有留言" v-if="notebook.length" @click="del_all">
 
 </div>
 
@@ -29,7 +29,7 @@
         data: {
             notebook:['el:用来定义vue的作用范围','v-text:用来获取data中定义的数据并且将数据以文本的形式渲染到指定标签内部'],
             msg:"",
-            isShow:'true',
+            // isShow:'true',
         },
         methods:{
             add_note(){
@@ -38,7 +38,7 @@
                     // 添加到末尾:push,添加到行首:unshift
                     this.notebook.unshift(this.msg);
                     this.msg='';
-                    this.isShow=true;
+                    // this.isShow=true;
                 }
                 else{
                     alert('留言不能为空！')
@@ -50,7 +50,7 @@
             },
             del_all(){
                 this.notebook.splice(0,this.notebook.length);
-                this.isShow = false;
+                // this.isShow = false;
             },
         }
     })

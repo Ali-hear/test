@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id='app'>
+
+    <router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+    let com = {
+        template: `
+          <div>
+          这是组件1
+          通过点击按钮触发事件跳转
+          <button @click="goPage">跳转到用户页面</button>
+          </div>
+        `,
+        methods:{
+            goPage(){
+                // 可以通过此方法跳转组件 this.$router.push()
+                // this.$router.push("com2?id=4")
+                this.$router.push("com2/1")
+            }
+        }
+    }
+
+    let com2 ={
+        template: `
+            <div>
+            这是组件2: 接受组件1传递的参数--->{{$route.query.id}}
+            这是组件2: 接受组件1传递的参数2--->{{$route.params.id}}
+            <h3 @click="goBack">返回上一页</h3>
+</div>
+        `,
+        methods: {
+            // -1:返回上一页,-2:返回上两页
+            goBack(){
+                this.$router.go(-1);
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes:[
+            {path:'/com',component:com},
+            {path:'/com2',component:com2},
+            {path:'/com2/:id',component:com2},
+            {path:'/',redirect:"/com"},
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        router:myRouter,
+    })
+</script>
+</body>
+</html>

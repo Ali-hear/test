@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+
+<div id='app'>
+
+    <h3>系统欢迎页面</h3>
+    <router-link to="/index">首页</router-link>
+    <router-link to="/user">用户页</router-link>
+    <hr>
+    <router-view></router-view>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+    let index = {
+        template: `
+            <div>
+            <h4>这是index页面</h4>
+            <h3>欢迎访问信息管理系统</h3>
+</div>
+        `,
+    }
+
+    let user = {
+        template: `
+          <div>
+          <h3>用户列表页</h3>
+          <table border="2">
+            <tr>
+              <td>ID</td>
+              <td>姓名</td>
+              <td>生日</td>
+              <td>操作</td>
+            </tr>
+            <tr v-for="user in users" :key="user.id">
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.bir }}</td>
+              <td>删除 | 更新</td>
+            </tr>
+          </table>
+          </div>
+        `,
+        data() {
+            return {
+                users: [
+                    {"id": 1, username: "001", bir: "2013-12-12"},
+                    {"id": 2, username: "002", bir: "2014-11-12"},
+                    {"id": 3, username: "003", bir: "2015-10-12"},
+                ]
+            }
+        }
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: "/index", component: index},
+            {path: "/user", component: user},
+            // 当路由匹配到 / 将重定向到首页
+            {path: "/", redirect: "/index"},
+            // 当用户的路由没有匹配到任何地址时  重定向到首页  要放到路由的末尾
+            {path:"/*",redirect: "/index"}
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        router: myRouter,
+    })
+</script>
+</body>
+</html>

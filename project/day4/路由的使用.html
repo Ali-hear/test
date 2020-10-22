@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--1.let定义组件；-->
+<!--2.为每个组件准备对应的路由  定义组件与路由的映射关系-->
+<!--3.将定义好的路由注入到当前vue实例中router-->
+<!--4.指定路由对应组件出现的位置router-view-->
+<!--5.定义路由访问不同组件的链接router-link-->
+<div id='app'>
+    <h3>这是主页的页头</h3>
+    <hr>
+
+    <router-link to="/first">访问界面1</router-link>
+    <router-link to="/second">访问界面2</router-link>
+<!--    指定路由对应组件出现的位置-->
+    <router-view></router-view>
+
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<!--依赖于vue.js才可以使用，引入的先后顺序固定-->
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<script>
+    let first ={
+        template:`
+            <div>
+            界面1
+</div>
+        `,
+    }
+
+    let second ={
+        template:`
+            <div>
+            界面2
+</div>
+        `,
+    }
+    // 为每个组件准备对应的路由  定义组件与路由的映射关系
+    // 页面中输入路由来显示对应的组件
+    // 需要将定义好的路由注入到当前vue实例中
+    let myRouter = new VueRouter({
+        routes:[
+            // path指的是访问组件的地址  component代表这个地址对应的组件  一一对应
+            {path:"/first",component:first},
+            {path:"/second",component:second},
+            {path:"/",component:first},    //设定默认组件
+        ]
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        // 注入定义好的vue路由
+        // 通过router配置参数注入,从而整个vue实例都拥有路由功能
+        router:myRouter
+    })
+</script>
+</body>
+</html>
