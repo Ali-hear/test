@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--局部组件的定义以及使用方式与全局组件保持一致，
+只不过是注册方式不同。 且局部组件只在注册的vue实例中生效-->
+<div id='app'>
+
+    <second></second>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    let second = {
+        template:`
+            <div>这是局部组件</div>
+        `,
+    }
+    // 根组件
+    new Vue({
+        el: "#app",
+        data: {},
+            // 局部变量注册(将组件注册给某个vue实例),只能在注册的vue实例内使用：
+        components:{
+            'second':second,
+        }
+    })
+
+</script>
+</body>
+</html>

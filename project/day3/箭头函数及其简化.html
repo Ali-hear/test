@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--箭头函数就是对于匿名函数的简化-->
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    // 正常函数：
+    function add(a,b){
+        console.log(a+b);
+    }
+    add(3,4)
+
+    // (参数列表) => 如果在函数体只有一条语句则可以省略{}
+    // let app2 = (a,b,c) => console.log(a+b+c);
+    // app2(2,3,5)
+
+    // 如果函数体中只有一条语句且还是return，那return可以省略
+    // let app3 = function (a,b){
+    //     return a+b
+    // }
+    // let num = app3(1,2)
+    // console.log(num)
+    //
+    // let app4 = (a,b) => a+b;
+    // let numb = app4(1,5);
+    // console.log(numb)
+
+    // 如果函数的参数只有一个,则可以省略()
+    // let app5 = x => console.log(x+5);
+    // app5(5)
+
+    // 如果函数体中只有一条语句且还是return,且参数只有一个
+    let app5 = a => a+5;
+    // app5与app6等价
+    let app6 = function (a){
+        return a+5
+    }
+
+    // 如果函数没有参数，则()不能省略
+    let app7 = () => console.log('xxx')
+    app7()
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--当多个变量依赖于一个属性,则可以使用watch来监听这个属性的变化-->
+<!--// 1. 监听属性监听的是data中已存在的变量的变化-->
+<!--// 2. 监听的值一旦发生改变,则就会触发监听事件-->
+<!--// 3. 监听事件不需要返回值-->
+<div id='app'>
+    <p @click="add_num">{{num}}</p>
+    <p>十位：{{shi}}</p>
+    <p>个位：{{ge}}</p>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            num: 29,
+            shi: '',
+            ge: '',
+        },
+        methods: {
+            add_num() {
+                this.num += 3;
+            },
+        },
+        watch: {
+            // 代表监听的是data中的num变量
+            num() {
+                this.shi = parseInt(this.num / 10);
+                this.ge = this.num % 10;
+            }
+        }
+    })
+</script>
+</body>
+</html>

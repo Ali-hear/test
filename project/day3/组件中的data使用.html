@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--组件除了data的定义与vue实例中的data不同,二者在使用方面没有区别-->
+<div id='app'>
+
+    <first></first>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    let first = {
+        template: `
+            <div>这又是一个组件
+            <br>
+            <span @click="func">这是组件的span,{{username}}</span>
+            </div>
+        `,
+        // 组件中data对应的值是函数,函数中还得有return值,但不能写成箭头函数
+        // 组件中的data是相互隔离的,两者互不影响
+        data: function (){
+            return {
+                username:'ali',
+            }
+        },
+        methods:{
+            func(){
+                console.log(this.username);
+            },
+        }
+    }
+
+    Vue.component("first",first)
+
+    new Vue({
+        el: "#app",
+        data: {
+            message: '',
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id='app'>
+    <com></com>
+    <h3 @click="low_num">这是vue中的number:{{number}}</h3>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    let com ={
+        template:`
+            <div>这是我的组件
+                <button @click="change">点击</button>
+                <div>我是嵌套的div,{{number}}</div>
+            </div>
+        `,
+        methods:{
+            change() {
+                this.number--;
+            },
+        },
+        data:function (){
+            return{
+                number:40,
+            }
+        },
+    }
+    // 全局一般不推荐使用
+    Vue.component('com',com)
+
+    new Vue({
+        el: "#app",
+        data: {
+            number: 35,
+        },
+        methods: {
+            low_num(){
+                this.number++;
+            }
+        }
+    })
+</script>
+</body>
+</html>

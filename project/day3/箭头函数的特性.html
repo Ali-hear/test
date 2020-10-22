@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id='app'>
+
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    let user = {
+        username:'ali',
+        app:function (){
+            // 当前this指向的是当前的user实例
+            console.log(this.username)
+        }
+    }
+    user.app()
+
+    let student = {
+        username:'lili',
+        app:function (){
+            // 在回调函数中this的指向会被改变 不再指向当前student实例
+            setTimeout(function (){
+                // 获取不到this对象了  已经被改变了
+                console.log(this.username)
+            })
+        }
+    }
+    student.app()
+
+    // 解决方案：
+    let emp = {
+        username:'alia',
+        app:function (){
+            // 回调函数中this指向会被改变
+            setTimeout(() => {
+                // 在回调函数中使用箭头函数不会改变this指向
+                console.log(this.username);
+            })
+        }
+    }
+    emp.app()
+
+    new Vue({
+        el: "#app",
+        data: {
+        },
+    })
+</script>
+</body>
+</html>

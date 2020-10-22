@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+
+<div id='app'>
+    <input type="text" v-model="username">
+    <hr>
+    父组件的值：{{username}}
+    <hr>
+    <!--    父组件向子组件传递数据: 在子组件的标签上绑定一个属性 :任意属性名="父组件的变量"-->
+    <!--    传递：-->
+    <app :test="username"></app>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    组件1
+    let app = {
+        template: `
+          <div>
+          这是子组件传递的数据:{{ test }}
+          </div>
+        `,
+        // 通过props来接收父组件传递的参数
+        props: [`test`]
+    }
+    // new Vue也是一个特殊的组件，由于组件1直接注册到了组件2 的内部  所以组件2是组件1的父组件
+    // 组件2
+    new Vue({
+        el: "#app",
+        data: {
+            username: '',
+        },
+        components: {
+            app: app,
+        }
+    })
+</script>
+</body>
+</html>

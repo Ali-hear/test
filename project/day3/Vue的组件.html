@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--组件的使用包括三部分:  组件的定义  组件的注册  组件的渲染-->
+<div id='app'>
+<!--    组件复用-->
+    <com></com>
+    <com></com>
+    <com></com>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    // 1. 组件的定义  组件就是一个普通的js对象
+    let com ={
+        template:`
+            <div>这是我的第一个组件</div>
+        `,
+    }
+    // 2. 组件的注册 全局注册  局部注册
+    // 全局组件的注册: Vue.component("组件注册后的名称", "组件对象")
+    // 全局组件是将定义好的组件直接注册给vue实例, 以后在任意vue的范围内使用组件都可以生效
+    Vue.component("com",com)
+
+    new Vue({
+        el: "#app",
+        data: {
+            message: '',
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--一个值因为多个值变化：computed;-->
+<!--多个值因为一个值变化：watch;-->
+<div id='app'>
+<!--    姓：<input type="text" v-model="firstName">-->
+<!--    名: <input type="text" v-model="lastName">-->
+<!--    <p>全名：{{fullName}}</p>-->
+
+    姓名：<input type="text" v-model="allName"><br>
+    姓：<p>{{f_name}}</p>
+    名：<p>{{l_name}}</p>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            firstName:'',
+            lastName:'',
+
+            allName:'',
+            f_name:'',
+            l_name:'',
+        },
+        computed:{
+            fullName(){
+                return this.firstName+this.lastName
+            },
+        },
+        watch:{
+            allName(){
+                this.f_name = this.allName.split(' ')[0],
+                this.l_name = this.allName.split(' ')[1]
+            }
+        }
+    })
+</script>
+</body>
+</html>

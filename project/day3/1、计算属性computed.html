@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<!--需要return-->
+<!--声明的是方法属性, 不可与data的变量重复-->
+<!--定义的方法属性必须在页面中渲染使用才生效  才会对内部的变量进行监听-->
+<div id='app'>
+    <!--多个变量的显示依赖于一个变量的变化-->
+<!--    <p @click="low_num">{{ num }}</p>-->
+<!--    <p>十位：{{parseInt(num / 10)}}</p>-->
+<!--    <p>个位：{{num % 10}}</p>-->
+
+    <!--一个变量的显示依赖于多个变量的变化，且依赖的任意一个变量发生变化，该变量都会变化-->
+    <input type="number" v-model="shi" max="9" min="0">
+    <input type="number" v-model="ge" max="9" min="0">
+    结果：<b>{{ shi * 10 + +ge}}</b>
+    结果：<b>{{result}}</b>
+</div>
+
+<script src="js/vue.min.js"></script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            num: 34,
+            shi: '',
+            ge: '',
+        },
+        methods: {
+            low_num() {
+                this.num--;
+            },
+        },
+        computed:{
+            // 定义的方法属性
+            result(){
+                console.log('11111');
+                return this.shi*10+ +this.ge;
+            }
+        }
+    })
+</script>
+</body>
+</html>
