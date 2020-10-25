@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+<!--sessionStorage与localStorage在使用方式上完全一致,
+只是储存数据的时间长短和储存的大小不同，session会随着浏览器的关闭而消失-->
 </head>
 <body>
-
-<div id='app'>
-
-
-</div>
-
+<!--localStorage都是以key-value的形式将数据储存的-->
+<!--localStorage储存的信息会直接以文本(字符串)的形式保存到硬盘  -->
+<!--不会随着页面刷新,浏览器关闭的关系而消失,只能用户手动删除才能消失-->
 <script src="js/vue.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 <script>
-    new Vue({
-        el: "#app",
-        data: {},
-    })
+    localStorage.name="百知教育";
+    console.log(localStorage.name)
+    // 储存与访问方式：
+    localStorage.age = 12;
+    localStorage['bir'] = "2012-02-12";
+    localStorage.setItem("pwd","123456");
+    let local = localStorage;
+    local.number = 13;
+
+    console.log(localStorage.bir);
+    console.log(localStorage["age"])
+    let pwd = localStorage.getItem("pwd");
+    console.log(pwd)
+
+    // 删除数据
+    localStorage.removeItem("pwd")
+    console.log(localStorage.pwd)
+
+    // 遍历数据：
+    for (let n =0;n<localStorage.length;n++){
+        console.log("第",n,"条数据的键为：",localStorage.key(n),",值为：",localStorage.getItem(localStorage.key(n)))
+    }
+
+    // 删除所有
+    // localStorage.clear()
 </script>
 </body>
 </html>

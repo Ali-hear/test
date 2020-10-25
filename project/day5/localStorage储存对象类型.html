@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    
+
 </head>
 <body>
-
-<div id = 'app'>
-
-    
-
-</div>
-
+<!--localStorage只能以文本的形式将数据保存到浏览器, -->
+<!--所以储存对象类型的数据时需要进行序列化JSON.stringify()与反序列化JSON.parser()-->
 <script src="js/vue.min.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 <script>
-    new Vue({
-        el: "#app",
-        data: {
-            
-        },
-    })
+
+    let local = localStorage;
+    local.number = 13;
+    local.name = "ali";
+    console.log(typeof local.number)
+    console.log(typeof local.name)
+
+    local.student = {
+        id:1,
+        username : "aliaaaa",
+        age:20,
+    }
+    console.log(typeof local.student)
+    console.log()
+
+    let student2 = {
+        id:2,
+        username:"alllllllli",
+        age:21,
+    }
+    // 储存对象类型的数据 需要将数据进行序列化
+    local.stu = JSON.stringify(student2)
+
+    // 取出数据  将数据反序列化成对象
+    let stu2 = JSON.parse(local.stu);
+    console.log(stu2.age)       //打印出彩色的才是对象
 </script>
 </body>
 </html>
