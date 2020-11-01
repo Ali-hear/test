@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vuex.3.0.1.js"></script>
+
+</head>
+<body>
+
+<div id='app'>
+
+    <first></first>
+    <hr>
+    <second></second>
+</div>
+
+
+
+<script>
+    let first = {
+        template:`
+            <div>
+            这是第一个组件
+            <button @click="add">按钮</button>
+</div>
+        `,
+        methods:{
+            add(){
+                // 向状态机提交一个动作
+                this.$store.commit("add_data",100);
+            }
+        }
+    }
+
+    let second = {
+        template: `
+            <div>
+            <span>这是第二个组件----->{{$store.getters.result}}</span>
+</div>
+        `
+    }
+    let myStore = new Vuex.Store({
+        state:{
+            num_list:[89,56],
+        },
+        mutations:{
+            add_data:function (state,num){
+                state.num_list.push(num)
+            }
+        },
+        getters:{
+            result:function (state){
+                let res = 0;
+                for (let n of state.num_list){
+                    res += n;
+                }
+                return res;
+            }
+        }
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        components:{
+            first:first,
+            second:second
+        },
+        store:myStore,
+    })
+</script>
+</body>
+</html>

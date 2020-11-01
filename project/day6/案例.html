@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vuex.3.0.1.js"></script>
+
+</head>
+<body>
+
+<div id='app'>
+    <first></first>
+    <hr>
+    <second></second>
+</div>
+
+
+
+<script>
+    let first ={
+        template:`
+            <div>
+            这是第一个组件
+            <button @click="clickMe">按钮</button>
+</div>
+        `,
+        methods:{
+            // 提交动作修改状态  提交动作的同时可以传递数据
+            clickMe(){
+                // 最多只能传递一个参数 可以将多个参数封装成一个对象传递
+                this.$store.commit("editUser",{username:"aaa",pwd:"0000"})
+            },
+        }
+    }
+
+    let second ={
+        template:`
+            <div>
+            这是第二个组件-->{{$store.state.user}}
+</div>
+        `
+    }
+
+    let myStore = new Vuex.Store({
+        // 状态
+        state:{
+            user:{
+                username:"ali",
+                pwd:'123456'
+            }
+        },
+        // 动作
+        mutations:{
+            editUser(state,user){
+                console.log(state,user)
+                state.user.username = user.username;
+                state.user.pwd = user.pwd;
+            }
+            }
+        })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        components:{
+            first:first,
+            second:second
+        },
+        store:myStore,
+    })
+</script>
+</body>
+</html>

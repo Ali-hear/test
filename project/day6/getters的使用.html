@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<!--当状态机中state的数据发生改变时,
+可以通过getters来对state中发生变化的数据做对应的操作-->
+<div id='app'>
+
+    <frist></frist>
+    <second></second>
+
+</div>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vuex.3.0.1.js"></script>
+
+<script>
+    let first ={
+        template:`
+            <div>
+            这是第一个组件
+            <button @click="add">按钮</button>
+</div>
+        `,
+        methods:{
+            add(){
+                // 在函数中向状态机提交一个变化（动作）
+                this.$store.commit("add_count");
+            },
+        }
+    }
+
+    let second ={
+    template:`
+        <div>
+        <span>这是第二个组件--->{{$store.state.count}}</span>
+        <br>
+        <span>获取count的相反数--->{{$store.getters.change_count}}</span>
+</div>
+    `
+    }
+
+    let myStore = new Vuex.Store({
+        // 状态：被共享的数据
+        state:{
+            // 需要共享的数据
+            count:1,
+        },
+        // 状态机的动作，在此被接收
+        mutations:{
+            add_count:function (state){
+                // 在动作中可以对共享数据做限制
+                state.count++;
+            }
+        },
+        // getters与state的关系  类似于data  computed
+        getters:{
+            // 返回count的相反数
+            change_count(state){
+                return 0-state.count;
+            }
+        }
+    })
+
+    new Vue({
+        el: "#app",
+        data: {},
+        components:{
+            first:first,
+            second:second
+        },
+        store:myStore
+    })
+</script>
+</body>
+</html>
